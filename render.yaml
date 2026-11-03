@@ -1,0 +1,12 @@
+# Render.com Blueprint for 1-Click Free Deployment
+services:
+  - type: web
+    name: nasa-space-fire-ai
+    env: python
+    buildCommand: ""
+    startCommand: python server.py
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: DEPLOY_ENV
+        value: production

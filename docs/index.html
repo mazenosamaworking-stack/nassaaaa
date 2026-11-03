@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منظومة الذكاء الاصطناعي الفضائية | NASA Space Fire AI Brain</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Futuristic Mission Bar -->
+    <header class="mission-header">
+        <div class="header-content">
+            <div class="logo-group">
+                <div class="orbit-icon">🛰️</div>
+                <div>
+                    <h1 class="system-title">NASA SPACE FIRE AI BRAIN (v3.0)</h1>
+                    <p class="system-sub">المحرك المركزي والعقل الذكي لخدمة تطبيق الفرونت إند — تدريب متعدد التنسيقات، وربط 2-Way كامل</p>
+                </div>
+            </div>
+            <div class="mission-status-badges">
+                <span class="badge online-pulse" id="sys-status-badge">● العقل متصل: 4 وكلاء نشطون</span>
+                <span class="badge iss-live-badge" id="header-iss-status">⚡ ISS بث حي متجدد كل ثانية</span>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="tab-agent1">
+                <span class="tab-icon">🛰️</span>
+                <span>العميل 1: متنبئ خطر الحريق</span>
+            </button>
+            <button class="tab-btn" data-tab="tab-agent2">
+                <span class="tab-icon">👨‍🚀</span>
+                <span>العميل 2: مساعد الطوارئ (LLM-RAG)</span>
+            </button>
+            <button class="tab-btn" data-tab="tab-agent3">
+                <span class="tab-icon">🌍</span>
+                <span>العميل 3: راصد ISS اللحظي</span>
+            </button>
+            <button class="tab-btn" data-tab="tab-agent4">
+                <span class="tab-icon">🔥</span>
+                <span>العميل 4: محاكي اللهب و CFD</span>
+            </button>
+            <button class="tab-btn" data-tab="tab-variables">
+                <span class="tab-icon">⚙️</span>
+                <span>تخصيص الخانات وربط الفرونت 2-Way</span>
+            </button>
+            <button class="tab-btn" data-tab="tab-training">
+                <span class="tab-icon">📊</span>
+                <span>إدخال البيانات لكافة الوكلاء (متعدد الصيغ)</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container">
+
+        <!-- ================= TAB 1: AGENT 1 (FIRE PREDICTOR) ================= -->
+        <section id="tab-agent1" class="tab-pane active">
+            <div class="pane-header">
+                <h2>🛰️ العميل 1: متنبئ خطر الحريق للمركبة الفضائية</h2>
+                <p>أنت من تحدد الخانات التي يدخلها المستخدم بالكامل. كل خانة تضيفها تؤثر رياضياً في الحسابات ويتم توليد كود ربطها بالفرونت إند إدخالاً وإخراجاً.</p>
+            </div>
+
+            <div class="grid-2col">
+                <!-- Left: Dynamic User Inputs for Prediction -->
+                <div class="card glass-card">
+                    <div class="card-header">
+                        <h3>المدخلات المخصصة للتنبؤ (تحكم كامل من قبلك)</h3>
+                        <span class="chip">خانات ديناميكية حرة</span>
+                    </div>
+
+                    <form id="agent1-predict-form" class="dynamic-form-grid">
+                        <div id="agent1-dynamic-fields-container" class="fields-grid">
+                            <!-- Populated dynamically -->
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="btn-predict-agent1">
+                                <span>⚡ تشغيل استدلال وتنبؤ الذكاء الاصطناعي</span>
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="btn-reset-agent1">
+                                <span>إعادة الضبط</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Right: AI Prediction Output & Diagnostics -->
+                <div class="card glass-card">
+                    <div class="card-header">
+                        <h3>مخرجات التنبؤ (يتم نقلها للفرونت إند)</h3>
+                        <span class="chip status-chip" id="agent1-status-pill">جاهز</span>
+                    </div>
+
+                    <div class="prediction-results-box" id="agent1-results-box">
+                        <div class="metrics-row">
+                            <div class="metric-card">
+                                <span class="metric-label">نسبة حدوث الحريق المخرجة</span>
+                                <div class="metric-value-huge" id="agent1-prob-val">--%</div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" id="agent1-prob-bar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="metric-card">
+                                <span class="metric-label">درجة الخطورة المخرجة</span>
+                                <div class="hazard-badge" id="agent1-hazard-badge">غير محدد</div>
+                            </div>
+                        </div>
+
+                        <div class="diagnosis-text-box">
+                            <h4>📋 وصف الـ AI للحالة (يُنقل لواجهتك):</h4>
+                            <p id="agent1-description-text" class="diagnosis-paragraph">
+                                أدخل القيم واضغط تنبؤ لمشاهدة التحليل العلمي والفيزيائي الدقيق.
+                            </p>
+                        </div>
+
+                        <div class="feature-contributions-box">
+                            <h4>أثر كل متغير مدخل في النتيجة:</h4>
+                            <div id="agent1-contributions-list" class="contributions-list"></div>
+                        </div>
+                    </div>
+
+                    <!-- 2-Way Contract Quick View -->
+                    <div class="dev-bridge-box">
+                        <div class="bridge-header">
+                            <h4>🔗 كود الربط الكامل 2-Way (إرسال المدخلات واستقبال المخرجات في موقعك):</h4>
+                            <button class="btn-copy" onclick="copySnippet('agent1-fetch-snippet')">نسخ الكود</button>
+                        </div>
+                        <pre class="code-block" id="agent1-fetch-snippet">// جاري التحميل...</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 2: AGENT 2 (LLM-RAG CHATBOT) ================= -->
+        <section id="tab-agent2" class="tab-pane">
+            <div class="pane-header">
+                <h2>👨‍🚀 العميل 2: مساعد الطوارئ الذكي (مربوط بالـ API الخاص بك + RAG على بياناتك)</h2>
+                <p>يمكنك وضع الـ API Key والموديل الخاص بك، وسيجيب الموديل <strong>حصراً وبدقة من واقع البيانات التي دربت العميل عليها</strong> دون هلوسة.</p>
+            </div>
+
+            <!-- Custom LLM Configuration Bar -->
+            <div class="card glass-card mb-4">
+                <div class="card-header">
+                    <h3>⚙️ إعدادات ربط موديل الـ LLM الخاص بك (OpenAI / Gemini / Ollama / Groq)</h3>
+                    <span class="chip chip-success" id="llm-status-chip">محلي / RAG داخلي</span>
+                </div>
+                <form id="agent2-llm-config-form" class="form-row align-items-end">
+                    <div class="form-group flex-1">
+                        <label for="cfg-llm-base-url">رابط الـ Base URL للموديل:</label>
+                        <input type="text" id="cfg-llm-base-url" value="https://api.openai.com/v1" class="form-input" placeholder="مثال: https://api.openai.com/v1 أو http://localhost:11434/v1">
+                    </div>
+                    <div class="form-group flex-1">
+                        <label for="cfg-llm-model">اسم الموديل (Model Name):</label>
+                        <input type="text" id="cfg-llm-model" value="gpt-4o-mini" class="form-input" placeholder="gpt-4o-mini, gemini-1.5-flash, llama3...">
+                    </div>
+                    <div class="form-group flex-1">
+                        <label for="cfg-llm-key">مفتاح الـ API Key:</label>
+                        <input type="password" id="cfg-llm-key" class="form-input" placeholder="sk-...">
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" id="cfg-llm-enabled">
+                            تفعيل الـ LLM الخارجي
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="btn-save-llm-cfg">حفظ وضبط الموديل</button>
+                </form>
+            </div>
+
+            <div class="grid-chat-layout">
+                <div class="card glass-card chat-card">
+                    <!-- Quick Prompt Chips -->
+                    <div class="prompt-chips-container">
+                        <span class="chip-label">سيناريوهات للتجربة:</span>
+                        <button class="chip-btn" onclick="sendQuickPrompt('أرى دخاناً أسود خفيفاً وشرراً كهربائياً متكرراً خارجاً من خلف لوحة توزيع الكهرباء الرئيسية في ممر المركبة مع رائحة بلاستيك شياط.')">⚡ شرر في لوحة الكهرباء</button>
+                        <button class="chip-btn" onclick="sendQuickPrompt('بطارية الليثيوم الاحتياطية لجهاز الفحص تصدر صوتاً يشبه الفرقعة مع انتفاخ في الغلاف وتصاعد حرارة شديدة.')">🔋 انفلات حراري لبطارية ليثيوم</button>
+                        <button class="chip-btn" onclick="sendQuickPrompt('مروحة تدوير الهواء في وحدة المعيشة تصدر صريراً حاداً وملمس غلافها ساخن جداً مع دخان خفيف حول الشفرات.')">🌀 احتكاك محرك مروحة التهوية</button>
+                    </div>
+
+                    <!-- Chat Messages Flow -->
+                    <div class="chat-messages" id="agent2-chat-box">
+                        <div class="message msg-bot">
+                            <div class="msg-avatar">🤖</div>
+                            <div class="msg-body">
+                                <strong>مساعد طوارئ ناسا الذكي (Agent 2):</strong>
+                                <p>مرحباً بك، أنا جاهز لتحليل أي عطل حراري بالمركبة بناءً على البيانات والوثائق الفنية المدربة. كيف يمكنني مساعدتك؟</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Input Box -->
+                    <form id="agent2-chat-form" class="chat-input-bar">
+                        <input type="text" id="agent2-input-msg" placeholder="صف العطل أو الحريق الملاحظ هنا..." autocomplete="off" required>
+                        <button type="submit" class="btn btn-primary" id="btn-send-chat">
+                            <span>إرسال واستشارة الـ AI</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- API Developer Specs for Chat -->
+                <div class="card glass-card">
+                    <div class="card-header">
+                        <h3>🔗 كود ربط الشات بالفرونت إند</h3>
+                    </div>
+                    <div class="bridge-details">
+                        <p><strong>Endpoint:</strong> <code>POST /api/chat/agent2</code></p>
+                        <pre class="code-block" id="agent2-fetch-snippet">// كود استدعاء شات العميل 2 في الفرونت إند:
+const res = await fetch('http://localhost:8500/api/chat/agent2', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    message: 'دخان ورائحة احتراق بلاستيك في لوحة القواطع'
+  })
+});
+const data = await res.json();
+console.log('رد الشات المعتمد على البيانات:', data.chat_response_markdown);</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 3: AGENT 3 (ISS LIVE MONITOR) ================= -->
+        <section id="tab-agent3" class="tab-pane">
+            <div class="pane-header">
+                <h2>🌍 العميل 3: راصد محطة الفضاء الدولية اللحظي (ISS Live Telemetry)</h2>
+                <p>مربوط ببث حي لمحطة ISS كل ثانية. <strong>شرط أساسي:</strong> لن يقدم نسبة خطر الحريق أو التحليل إلا بعد تدريبه على بيانات أولاً.</p>
+            </div>
+
+            <!-- Custom API Configuration Bar for ISS -->
+            <div class="card glass-card mb-4">
+                <div class="card-header">
+                    <h3>🛰️ ربط الـ API الدقيق لمحطة الفضاء الدولية (ISS Telemetry Endpoint)</h3>
+                    <span class="chip" id="iss-source-chip">البث المداري الافتراضي</span>
+                </div>
+                <form id="agent3-iss-config-form" class="form-row align-items-end">
+                    <div class="form-group flex-2">
+                        <label for="cfg-iss-url">رابط الـ API الحي لمحطة ISS (أو اتركه فارغاً للبث المداري المدمج):</label>
+                        <input type="text" id="cfg-iss-url" class="form-input" placeholder="مثال: https://api.wheretheiss.at/v1/satellites/25544 أو رابط ناسا الخاص بك">
+                    </div>
+                    <div class="form-group flex-1">
+                        <label for="cfg-iss-key">مفتاح API Key (إن وُجد):</label>
+                        <input type="password" id="cfg-iss-key" class="form-input" placeholder="اختياري">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="btn-save-iss-cfg">تحديث رابط الـ ISS</button>
+                </form>
+            </div>
+
+            <!-- Training Gate Status Alert -->
+            <div id="iss-training-alert" class="alert-box alert-warning">
+                <div class="alert-icon">⚠️</div>
+                <div>
+                    <strong>حالة تدريب العميل 3:</strong>
+                    <span id="iss-training-status-text">النموذج غير مدرب بعد؛ ارفع بيانات ودرب العميل في تبويب إدخال البيانات ليبدأ احتساب نسبة خطر الحريق.</span>
+                </div>
+            </div>
+
+            <!-- Ticking Telemetry Top Status -->
+            <div class="iss-live-banner">
+                <div class="live-indicator">
+                    <span class="blinking-dot"></span>
+                    <span class="live-title">LIVE TELEMETRY STREAM CONNECTED (SSE 1s TICK)</span>
+                </div>
+                <div class="stream-stats">
+                    <span>الوقت: <strong id="iss-timestamp">--:--:--</strong></span>
+                    <span>خط العرض: <strong id="iss-lat">--</strong>° | خط الطول: <strong id="iss-lon">--</strong>°</span>
+                    <span>الارتفاع: <strong id="iss-alt">418.2</strong> كم</span>
+                    <span>السرعة: <strong id="iss-speed">27,600</strong> كم/س</span>
+                </div>
+            </div>
+
+            <div class="grid-2col">
+                <!-- Live Telemetry Gauges -->
+                <div class="card glass-card">
+                    <div class="card-header">
+                        <h3>قراءات حساسات الغلاف الجوي لمحطة ISS (ECLSS Telemetry)</h3>
+                        <span class="chip chip-live">تتجدد كل ثانية ⚡</span>
+                    </div>
+
+                    <div class="gauges-grid">
+                        <div class="gauge-card">
+                            <span class="gauge-label">نسبة الأكسجين O2</span>
+                            <div class="gauge-val" id="iss-val-o2">--%</div>
+                        </div>
+                        <div class="gauge-card">
+                            <span class="gauge-label">الضغط الكلي للمقصورة</span>
+                            <div class="gauge-val" id="iss-val-press">-- kPa</div>
+                        </div>
+                        <div class="gauge-card">
+                            <span class="gauge-label">ثاني أكسيد الكربون CO2</span>
+                            <div class="gauge-val" id="iss-val-co2">--%</div>
+                        </div>
+                        <div class="gauge-card">
+                            <span class="gauge-label">درجة حرارة المقصورة</span>
+                            <div class="gauge-val" id="iss-val-temp">-- °C</div>
+                        </div>
+                        <div class="gauge-card">
+                            <span class="gauge-label">تيار التهوية الهوائية</span>
+                            <div class="gauge-val" id="iss-val-flow">-- m/s</div>
+                        </div>
+                        <div class="gauge-card">
+                            <span class="gauge-label">حساسات الدخان Destiny</span>
+                            <div class="gauge-val text-green" id="iss-val-smoke">0.03% (طبيعي)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live AI Risk Evaluation -->
+                <div class="card glass-card">
+                    <div class="card-header">
+                        <h3>تقييم الـ AI لخطر الحريق في ISS (مشروط بالتدريب)</h3>
+                        <span class="chip status-chip" id="iss-risk-pill">في الانتظار</span>
+                    </div>
+
+                    <div class="prediction-results-box">
+                        <div class="metrics-row">
+                            <div class="metric-card">
+                                <span class="metric-label">نسبة احتمال حدوث الحريق في المحطة</span>
+                                <div class="metric-value-huge" id="iss-prob-val">--%</div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" id="iss-prob-bar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="metric-card">
+                                <span class="metric-label">درجة الخطورة اللحظية</span>
+                                <div class="hazard-badge" id="iss-hazard-badge">غير مدرب بعد</div>
+                            </div>
+                        </div>
+
+                        <div class="diagnosis-text-box">
+                            <h4>وصف العميل للحالة اللحظية (Agent 3 Status):</h4>
+                            <p id="iss-agent-description" class="diagnosis-paragraph">
+                                يتطلب تدريب النموذج لبدء التشخيص...
+                            </p>
+                        </div>
+
+                        <!-- Developer API for ISS Live Feed -->
+                        <div class="dev-bridge-box">
+                            <div class="bridge-header">
+                                <h4>🔗 ربط بث الـ ISS المباشر بالفرونت إند:</h4>
+                                <button class="btn-copy" onclick="copySnippet('iss-sse-snippet')">نسخ الكود</button>
+                            </div>
+                            <pre class="code-block" id="iss-sse-snippet">// استماع مباشر لبيانات ISS في الفرونت إند عبر SSE:
+const eventSource = new EventSource('http://localhost:8500/api/stream/agent3');
+eventSource.onmessage = (event) => {
+  const issData = JSON.parse(event.data);
+  console.log('بيانات المحطة:', issData.atmospheric_telemetry);
+  console.log('تقييم الخطر:', issData.ai_fire_hazard_evaluation);
+};</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 4: AGENT 4 (AI & CFD FLAME SIMULATOR) ================= -->
+        <section id="tab-agent4" class="tab-pane">
+            <div class="pane-header">
+                <h2>🔥 العميل 4: محاكي اللهب وحقل الحرارة CFD (تحكم ديناميكي كامل بالمواد والظروف)</h2>
+                <p>يمكنك إضافة وحذف أي مادة احتراق، وإضافة أو حذف أي شرط بيئي (مثل الجاذبية $g$). المحاكاة مبنية على مصفوفات حقيقية للحقل الحراري ورسم تفاعلي يُرآى بالفرونت إند.</p>
+            </div>
+
+            <!-- Material Management Mini-Bar -->
+            <div class="card glass-card mb-4">
+                <div class="card-header">
+                    <h3>🧪 إدارة مواد الاحتراق (إضافة / حذف مادة حرة)</h3>
+                    <span class="chip" id="materials-count-chip">5 مواد</span>
+                </div>
+                <div class="materials-manager-row">
+                    <div class="form-group flex-1">
+                        <label>اختر مادة للتجربة:</label>
+                        <select id="sim-material-select" class="form-select"></select>
+                    </div>
+                    <button class="btn btn-secondary btn-sm" onclick="showAddMaterialModal()">+ إضافة مادة جديدة</button>
+                    <button class="btn btn-icon-del btn-sm" onclick="deleteCurrentMaterial()">حذف هذه المادة</button>
+                </div>
+            </div>
+
+            <div class="grid-sim-layout">
+                <!-- Dynamic Conditions Sliders -->
+                <div class="card glass-card">
+                    <div class="card-header">
+                        <h3>ظروف بيئة الاحتراق (قابلة للإضافة والحذف)</h3>
+                        <span class="chip">تحديث لحظي</span>
+                    </div>
+
+                    <div id="agent4-conditions-container">
+                        <!-- Dynamic sliders loaded from variable manager for Agent 4 -->
+                    </div>
+
+                    <div class="mt-4">
+                        <button class="btn btn-secondary btn-sm" onclick="showAddConditionModal()">+ إضافة شرط / متغير جديد للمحاكاة</button>
+                    </div>
+                </div>
+
+                <!-- Real-time Visual Flame Canvas & CFD Matrix -->
+                <div class="card glass-card visual-stim-card">
+                    <div class="card-header">
+                        <h3>شاشة العرض البصري ومصفوفة CFD (تُربط بفرونت إند)</h3>
+                        <div class="view-toggles">
+                            <button class="btn-toggle active" id="btn-toggle-flame" onclick="switchSimView('flame')">شعلة فيزيائية</button>
+                            <button class="btn-toggle" id="btn-toggle-cfd" onclick="switchSimView('cfd')">حقل حراري CFD (24x24)</button>
+                        </div>
+                    </div>
+
+                    <!-- Canvas Wrapper -->
+                    <div class="canvas-wrapper">
+                        <canvas id="flame-canvas" width="400" height="420"></canvas>
+                        <canvas id="cfd-canvas" width="400" height="420" style="display: none;"></canvas>
+                        <div class="chamber-grid-overlay"></div>
+                    </div>
+
+                    <!-- Live Physics Metrics Extracted by AI -->
+                    <div class="flame-metrics-grid">
+                        <div class="f-metric">
+                            <span>نصف القطر:</span>
+                            <strong id="sim-radius-val">-- mm</strong>
+                        </div>
+                        <div class="f-metric">
+                            <span>نسبة الاستطالة:</span>
+                            <strong id="sim-height-val">--</strong>
+                        </div>
+                        <div class="f-metric">
+                            <span>الحرارة القصوى:</span>
+                            <strong id="sim-temp-val">-- K</strong>
+                        </div>
+                        <div class="f-metric">
+                            <span>انبعاث أزرق CH*:</span>
+                            <strong id="sim-blue-val">--%</strong>
+                        </div>
+                        <div class="f-metric">
+                            <span>معدل الاهتزاز:</span>
+                            <strong id="sim-flicker-val">-- Hz</strong>
+                        </div>
+                        <div class="f-metric">
+                            <span>معدل الاحتراق:</span>
+                            <strong id="sim-burnrate-val">-- mm/s</strong>
+                        </div>
+                    </div>
+
+                    <!-- Developer Front-End Bridge for Visual Simulator -->
+                    <div class="dev-bridge-box">
+                        <div class="bridge-header">
+                            <h4>🔗 كود مرآة العرض البصري (Visual Mirroring) لموقع الفرونت إند:</h4>
+                            <button class="btn-copy" onclick="copySnippet('agent4-mirror-snippet')">نسخ كود المرآة</button>
+                        </div>
+                        <pre class="code-block" id="agent4-mirror-snippet">// كود محاكاة اللهب ورسمه في واجهتك:
+const res = await fetch('http://localhost:8500/api/simulate/agent4', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ variables: { fuel_material: 'PMMA', gravity_level_g: 0.0, sim_o2_percent: 21.0 } })
+});
+const sim = await res.json();
+// 1. رسم اللهب كمسار SVG متناظر أو دمعة:
+document.getElementById('flame_svg').setAttribute('d', sim.visual_spec.svg_outer_path);
+// 2. أو قراءة مصفوفة درجات الحرارة CFD (24x24):
+console.log('مصفوفة الحرارة:', sim.cfd_thermal_grid.scalar_matrix);</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 5: 2-WAY DYNAMIC VARIABLES & FRONTEND CONTRACT ================= -->
+        <section id="tab-variables" class="tab-pane">
+            <div class="pane-header">
+                <h2>⚙️ تخصيص الخانات وعقد الربط ثنائي الاتجاه (2-Way Front-End Contract)</h2>
+                <p>كل خانة تضيفها للنظام يُولد لها تلقائياً: كود إرسالها من الفرونت، وكود استقبال وربط نتائجها في واجهتك.</p>
+            </div>
+
+            <div class="grid-2col">
+                <!-- Add New Dynamic Field Form -->
+                <div class="card glass-card">
+                    <div class="card-header">
+                        <h3>إضافة خانة / متغير حر جديد</h3>
+                        <span class="chip chip-new">+ إضافة حرة</span>
+                    </div>
+                    <form id="add-variable-form" class="standard-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="var-id-input">معرّف الخانة (Field Slug):</label>
+                                <input type="text" id="var-id-input" placeholder="مثال: co_percent أو wire_temp" required pattern="[a-zA-Z0-9_]+">
+                            </div>
+                            <div class="form-group">
+                                <label for="var-agent-select">تابع لأي عميل (Agent):</label>
+                                <select id="var-agent-select" class="form-select">
+                                    <option value="agent1">العميل 1 (تنبؤ خطر الحريق)</option>
+                                    <option value="agent3">العميل 3 (محطة الفضاء ISS)</option>
+                                    <option value="agent4">العميل 4 (محاكي اللهب)</option>
+                                    <option value="global">عام لكافة العملاء</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="var-name-ar">الاسم بالعربية:</label>
+                                <input type="text" id="var-name-ar" placeholder="مثال: نسبة أول أكسيد الكربون CO" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="var-name-en">الاسم بالإنجليزية:</label>
+                                <input type="text" id="var-name-en" placeholder="مثال: Carbon Monoxide %" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="var-unit">وحدة القياس:</label>
+                                <input type="text" id="var-unit" placeholder="مثال: % أو kPa أو °C">
+                            </div>
+                            <div class="form-group">
+                                <label for="var-min">الحد الأدنى:</label>
+                                <input type="number" id="var-min" value="0" step="any">
+                            </div>
+                            <div class="form-group">
+                                <label for="var-max">الحد الأقصى:</label>
+                                <input type="number" id="var-max" value="100" step="any">
+                            </div>
+                            <div class="form-group">
+                                <label for="var-default">القيمة الافتراضية:</label>
+                                <input type="text" id="var-default" value="0.0" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label>
+                                <input type="checkbox" id="var-active-pred" checked>
+                                إتاحة هذا المتغير للمستخدم لإدخاله أثناء التنبؤ بالفرونت إند
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="btn-save-var">
+                            <span>حفظ المتغير وتفعيله فوراً في المنظومة</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Variables Table & 2-Way Contract Inspector -->
+                <div class="card glass-card">
+                    <div class="card-header">
+                        <h3>قائمة المتغيرات الحالية وعقد الربط (Input & Output Bridge)</h3>
+                        <span class="chip" id="vars-count-chip">-- متغيرات</span>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="styled-table" id="vars-table">
+                            <thead>
+                                <tr>
+                                    <th>الاسم والمعرّف</th>
+                                    <th>العميل</th>
+                                    <th>الوحدة والمدى</th>
+                                    <th>إتاحة للتنبؤ</th>
+                                    <th>إجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vars-table-body"></tbody>
+                        </table>
+                    </div>
+
+                    <!-- 2-Way Contract Code Box -->
+                    <div class="dev-bridge-box mt-4">
+                        <div class="bridge-header">
+                            <h4>🔗 كود العقد الكامل 2-Way (Input + Output Mapping):</h4>
+                            <select id="select-agent-contract" class="form-select-sm" onchange="load2WayContract()">
+                                <option value="agent1">العميل 1 (تنبؤ خطر الحريق)</option>
+                                <option value="agent4">العميل 4 (محاكي اللهب)</option>
+                            </select>
+                        </div>
+                        <pre class="code-block" id="contract-code-snippet"></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 6: MULTI-FORMAT DATA INGESTION & TRAINING ================= -->
+        <section id="tab-training" class="tab-pane">
+            <div class="pane-header">
+                <h2>📊 إدخال البيانات وتدريب الذكاء الاصطناعي لكافة الوكلاء (Universal Ingestion)</h2>
+                <p>متاح لكافة الوكلاء (Agent 1, 2, 3, 4) وبجميع الأشكال: CSV, Excel (.xlsx), JSON, PDF, مصفوفات علمية, صور وفيديو، ووثائق نصية.</p>
+            </div>
+
+            <div class="grid-2col">
+                <!-- Ingestion Form -->
+                <div class="card glass-card">
+                    <div class="card-header">
+                        <h3>رفع وتدريب دفعة بيانات جديدة</h3>
+                        <span class="chip">يدعم جميع الصيغ</span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group flex-1">
+                            <label for="ingest-agent-select">العميل المستهدف بالبيانات:</label>
+                            <select id="ingest-agent-select" class="form-select">
+                                <option value="agent1">العميل 1 (تنبؤ خطر حريق المركبة)</option>
+                                <option value="agent2">العميل 2 (شات بوت طوارئ الفضاء - RAG)</option>
+                                <option value="agent3">العميل 3 (راصد محطة الفضاء ISS)</option>
+                                <option value="agent4">العميل 4 (محاكي اللهب وبيانات CFD)</option>
+                            </select>
+                        </div>
+                        <div class="form-group flex-1">
+                            <label for="ingest-format-select">تنسيق وصيغة البيانات:</label>
+                            <select id="ingest-format-select" class="form-select" onchange="onFormatChange()">
+                                <option value="json">JSON (مصفوفة أو كائن)</option>
+                                <option value="csv">CSV (قيم مفصولة بفواصل/Tabs)</option>
+                                <option value="excel">Excel (.xlsx مدمج بدون مكتبات)</option>
+                                <option value="pdf">PDF (تقارير وأوراق بحثية فنية)</option>
+                                <option value="scientific_array">Scientific Arrays (مصفوفات علمية)</option>
+                                <option value="image">Image (لقطات لهب ودخان)</option>
+                                <option value="video">Video (فيديوهات احتراق ناسا)</option>
+                                <option value="text">Text / Documentation (دليل إجراءات السلامة)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic User-Typed Variable Tags (Critical Requirement) -->
+                    <div class="form-group">
+                        <label for="custom-tags-input">
+                            <strong>المتغيرات المطلوب تحليل البيانات بالنسبالها (اكتب وحدد بحرية تامة دون التقيد بقائمة):</strong>
+                        </label>
+                        <input type="text" id="custom-tags-input" class="form-input" placeholder="اكتب أسماء المتغيرات مفصولة بفواصل، مثل: o2_percent, co2_percent, wire_temp, pressure...">
+                        <span class="input-hint">سيتم تسجيل كل متغير يدخل في الحسبة الرياضية فوراً.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="batch-name-input">اسم الدفعة / التجربة:</label>
+                        <input type="text" id="batch-name-input" value="NASA_Exp_Batch_01" class="form-input">
+                    </div>
+
+                    <!-- Text / JSON / CSV Paste Area -->
+                    <div class="form-group" id="text-input-area">
+                        <label for="batch-data-input">محتوى البيانات (أو الصق النص هنا):</label>
+                        <textarea id="batch-data-input" rows="8" class="form-textarea" placeholder="الصق بيانات الـ JSON أو CSV أو المصفوفات هنا..."></textarea>
+                    </div>
+
+                    <!-- File Upload Input -->
+                    <div class="form-group">
+                        <label for="file-upload-input">أو ارفع ملف من جهازك مباشرة (CSV, Excel, JSON, PDF, Images, Video):</label>
+                        <input type="file" id="file-upload-input" class="form-input" accept=".csv,.xlsx,.xls,.json,.jsonl,.pdf,.txt,.log,.png,.jpg,.jpeg,.mp4">
+                        <span class="input-hint" style="color: var(--cyan-nasa);">💡 يتم التعرف التلقائي على نوع وتنسيق الملف وقراءة أعمدته ومحتواه فور اختياره.</span>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="loadSampleDataByFormat()">
+                            <span>تحميل عينة تجريبية للصيغة</span>
+                        </button>
+                        <button type="button" class="btn btn-primary" id="btn-submit-ingest" onclick="submitUniversalIngestion()">
+                            <span>رفع البيانات وتدريب الـ AI للعميل 🚀</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Training Results & Status Across All 4 Agents -->
+                <div class="card glass-card">
+                    <div class="card-header">
+                        <h3>حالة تدريب الوكلاء الأربعة وأوزان المتغيرات</h3>
+                        <span class="chip chip-success">سجل التدريب الموحد</span>
+                    </div>
+
+                    <div class="agents-status-grid">
+                        <div class="agent-stat-box" id="stat-box-agent1">
+                            <strong>العميل 1:</strong>
+                            <span class="badge" id="badge-agent1">مدرب</span>
+                        </div>
+                        <div class="agent-stat-box" id="stat-box-agent2">
+                            <strong>العميل 2:</strong>
+                            <span class="badge" id="badge-agent2">جاهز RAG</span>
+                        </div>
+                        <div class="agent-stat-box" id="stat-box-agent3">
+                            <strong>العميل 3:</strong>
+                            <span class="badge" id="badge-agent3">غير مدرب بعد</span>
+                        </div>
+                        <div class="agent-stat-box" id="stat-box-agent4">
+                            <strong>العميل 4:</strong>
+                            <span class="badge" id="badge-agent4">مدرب CFD</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <h4>أوزان أهمية المتغيرات في التحليل (Feature Importance %):</h4>
+                        <div id="feature-importance-bars" class="importance-bars-container mt-2"></div>
+                    </div>
+
+                    <div class="training-log-box mt-4">
+                        <h4>سجل المعالجة والـ Extraction:</h4>
+                        <pre class="code-block" id="training-log-console">في انتظار رفع البيانات وتدريب الوكلاء...</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal for Adding Custom Material (Agent 4) -->
+    <div id="material-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-card glass-card">
+            <div class="card-header">
+                <h3>إضافة مادة احتراق جديدة لمحاكي اللهب</h3>
+                <button class="btn-close" onclick="closeMaterialModal()">✕</button>
+            </div>
+            <form id="add-material-form" class="standard-form mt-2">
+                <div class="form-group">
+                    <label>معرّف المادة (ID):</label>
+                    <input type="text" id="mat-id" placeholder="مثال: Kevlar أو Methane_Jet" required>
+                </div>
+                <div class="form-group">
+                    <label>الاسم بالعربية:</label>
+                    <input type="text" id="mat-name-ar" placeholder="مثال: ألياف الكيفلار الفضائية" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>حرارة اللهب الأساسية (K):</label>
+                        <input type="number" id="mat-temp" value="1900">
+                    </div>
+                    <div class="form-group">
+                        <label>مؤشر الأكسجين LOI (%):</label>
+                        <input type="number" id="mat-loi" value="22.0" step="0.5">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>ميل توليد السخام (0.1 خفيف إلى 1.0 كثيف):</label>
+                    <input type="number" id="mat-soot" value="0.3" step="0.05" min="0" max="1">
+                </div>
+                <div class="form-actions mt-2">
+                    <button type="submit" class="btn btn-primary">حفظ المادة فوراً</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeMaterialModal()">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast-notification"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

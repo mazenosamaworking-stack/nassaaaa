@@ -1,0 +1,4 @@
+# NASA Space Fire AI System
+# Zero external pip dependencies required!
+# Runs on pure Python standard library (3.9+)
+# Built with: sqlite3, json, csv, zipfile, xml.etree.ElementTree, http.server, urllib
